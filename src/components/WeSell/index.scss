@@ -1,0 +1,76 @@
+#weSell {
+  background-color: #110F0F;
+  padding: 50px 16px;
+
+  h2, p {
+    color: white;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 56.52px;
+    line-height: 79.13px;
+    padding-left: 16px;
+  }
+
+  p {
+    font-size: 22.61px;
+    padding-left: 16px;
+    line-height: 33.91px;
+    color: #c5c5c5;
+    margin-bottom: 50px;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+
+    cursor: pointer;
+    transition: all .4s ease;
+
+    &:hover {
+      transform: scale(1.03);
+      button {
+        color: #110F0F;
+        background-color: white;
+      }
+    }
+
+    button {
+      font-weight: 700;
+      font-size: 35.9px;
+      line-height: 34.1px;
+      color: white;
+      background-color: #110F0F;
+      padding: 15px 64px;
+      border: 1px solid white;
+      border-radius: 15px;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+
+    h2 {
+      font-size: 26px;
+      line-height: 35px;
+    }
+    p {
+      font-size: 16px;
+    }
+
+    .button {
+      button {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 34.1px;
+        color: white;
+        background-color: #110F0F;
+        padding: 8px 48px;
+        border: 1px solid white;
+        border-radius: 15px;
+      }
+    }
+  }
+}

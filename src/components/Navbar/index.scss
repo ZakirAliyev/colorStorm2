@@ -1,0 +1,44 @@
+#navbar {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 998;
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .link {
+      color: black;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+
+  .icon {
+    display: none;
+  }
+
+  @media screen and (max-width: 992px) {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    .links {
+      display: none;
+    }
+    .icon {
+      display: block;
+    }
+  }
+}
