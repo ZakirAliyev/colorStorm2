@@ -1,7 +1,16 @@
 import './index.scss'
 import image1 from "/src/assets/bg.jpg"
+import {useGetAllServicesQuery} from "../../apiServices/usersApi.jsx";
+import {SERVICE_CARD_URL} from "../../constants.js";
+import {useNavigate} from "react-router";
 
 function WeOffer() {
+
+    const {data: getAllServices} = useGetAllServicesQuery()
+    const services = getAllServices?.data
+
+    const navigate = useNavigate();
+
     return (
         <section id={"weOffer"}>
             <div className={"container"}>
@@ -14,16 +23,16 @@ function WeOffer() {
                 <div className={"row"}>
                     <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
                         <div className={"box"}>
-                            <img src={image1} alt={"Image"}/>
-                            <h3>Stage creation</h3>
-                            <h4>Integer ante non nunc, eget est justo vel semper nunc.</h4>
-                        </div>
-                    </div>
-                    <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
-                        <div className={"box"}>
-                            <img src={image1} alt={"Image"}/>
-                            <h3>Monitor repair</h3>
-                            <h4>Integer ante non nunc, eget est justo vel semper nunc.</h4>
+                            {services && services.map((service) => (
+                                <div key={service?.id} onClick={() => {
+                                    window.scrollTo(0, 0)
+                                    navigate(`/services/${service?.id}`)
+                                }}>
+                                    <img src={SERVICE_CARD_URL + service?.serviceImageName} alt={"Image"}/>
+                                    <h3>{service?.name}</h3>
+                                    <h4>{service?.description}</h4>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

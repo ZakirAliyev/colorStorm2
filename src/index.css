@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -7,6 +10,10 @@
     text-decoration: none;
     list-style: none;
     font-family: 'Poppins', sans-serif;
+}
+
+table, th, td, tr, thead, tbody {
+    text-align: center !important;
 }
 
 a, button {
@@ -225,4 +232,35 @@ a, button {
         width: calc(100% / 12 * 12);
         padding: 16px;
     }
+}
+
+
+.addButton111 {
+    height: 30px;
+    width: 30px;
+    background-color: #0DA5B5;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid #0DA5B5;
+    font-size: 14px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addButton112 {
+    height: 30px;
+    background-color: #0DA5B5;
+    padding: 0 10px;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid #0DA5B5;
+    font-size: 14px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

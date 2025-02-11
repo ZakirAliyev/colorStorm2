@@ -1,17 +1,25 @@
 import './index.scss'
-import image1 from "../../assets/bg.jpg";
+import {PRODUCT_URL} from "../../constants.js";
+import {useNavigate} from "react-router";
 
-function Card() {
+function Card({product}) {
+
+    const navigate = useNavigate();
+
     return (
         <div className={"col-3 col-md-6 col-sm-6 col-xs-6"} id={"card"}>
             <div className={"box"}>
-                <img src={image1} alt={"Image"}/>
+                <img src={PRODUCT_URL + product?.images[0]} alt={"Image"}/>
                 <div className={"wrapper"}>
                     <div className={"textWrapper"}>
-                        <h3>Kategory</h3>
-                        <h4>Product name</h4>
+                        <h3>{product?.categoryName}</h3>
+                        <h4>{product?.name}</h4>
                     </div>
-                    <button>MƏHSULU İNCƏLƏ</button>
+                    <button onClick={() => {
+                        window.scrollTo(0, 0)
+                        navigate(`/services/${product?.id}`);
+                    }}>MƏHSULU İNCƏLƏ
+                    </button>
                 </div>
             </div>
         </div>
