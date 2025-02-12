@@ -14,7 +14,7 @@ function Navbar() {
             <Link to={`/`}><img src={"/src/assets/logo.png"} alt={"Logo"}/></Link>
 
             <div className={"links"}>
-                <Link to={`/about`} className={"link"}>About us</Link>
+                <Link to={`/products`} className={"link"}>Products</Link>
 
                 <div className={"services-dropdown"}>
                     <button className="link dropdown-toggle" onClick={() => setShowDropdown(!showDropdown)}>
@@ -34,6 +34,7 @@ function Navbar() {
                     )}
                 </div>
 
+                <Link to={`/about`} className={"link"}>About us</Link>
                 <Link to={`/portfolio`} className={"link"}>Portfolio</Link>
             </div>
 
