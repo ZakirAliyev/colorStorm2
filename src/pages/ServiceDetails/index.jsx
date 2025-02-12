@@ -22,7 +22,7 @@ function ServiceDetails() {
             <Navbar/>
             <ServiceBanner service={service}/>
             <ServiceAbout service={service}/>
-            <ServiceImages/>
+            <ServiceImages service={service}/>
             <ShortInfo/>
             <LogoScroll/>
             <WeSell/>

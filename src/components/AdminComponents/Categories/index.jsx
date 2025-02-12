@@ -206,6 +206,8 @@ function Categories() {
                         onClick={() => {
                             setEditingCategory(record);
                             editForm.setFieldsValue({name: record.name});
+                            editForm.setFieldsValue({nameAz: record.nameAz});
+                            editForm.setFieldsValue({nameRu: record.nameRu});
                             setIsEditModalVisible(true);
                         }}
                     />
@@ -272,8 +274,26 @@ function Categories() {
             >
                 <Form form={form} layout="vertical">
                     <Form.Item
-                        label="Kateqoriya adı"
+                        label="Kateqoriya adı (EN)"
                         name="name"
+                        rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={form} layout="vertical">
+                    <Form.Item
+                        label="Kateqoriya adı (AZ)"
+                        name="nameAz"
+                        rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={form} layout="vertical">
+                    <Form.Item
+                        label="Kateqoriya adı (RU)"
+                        name="nameRu"
                         rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
                     >
                         <Input placeholder="Kateqoriya adını daxil edin"/>
@@ -295,8 +315,26 @@ function Categories() {
             >
                 <Form form={editForm} layout="vertical">
                     <Form.Item
-                        label="Kateqoriya adı"
+                        label="Kateqoriya adı (EN)"
                         name="name"
+                        rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={editForm} layout="vertical">
+                    <Form.Item
+                        label="Kateqoriya adı (AZ)"
+                        name="nameAz"
+                        rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={editForm} layout="vertical">
+                    <Form.Item
+                        label="Kateqoriya adı (RU)"
+                        name="nameRu"
                         rules={[{required: true, message: 'Zəhmət olmasa kateqoriya adını daxil edin!'}]}
                     >
                         <Input placeholder="Kateqoriya adını daxil edin"/>
@@ -338,8 +376,26 @@ function Categories() {
             >
                 <Form form={subCategoryForm} layout="vertical">
                     <Form.Item
-                        label="Alt Kateqoriya adı"
+                        label="Alt Kateqoriya adı (EN)"
                         name="name"
+                        rules={[{required: true, message: 'Zəhmət olmasa alt kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Alt kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={subCategoryForm} layout="vertical">
+                    <Form.Item
+                        label="Alt Kateqoriya adı (AZ)"
+                        name="nameAz"
+                        rules={[{required: true, message: 'Zəhmət olmasa alt kateqoriya adını daxil edin!'}]}
+                    >
+                        <Input placeholder="Alt kateqoriya adını daxil edin"/>
+                    </Form.Item>
+                </Form>
+                <Form form={subCategoryForm} layout="vertical">
+                    <Form.Item
+                        label="Alt Kateqoriya adı (RU)"
+                        name="nameRu"
                         rules={[{required: true, message: 'Zəhmət olmasa alt kateqoriya adını daxil edin!'}]}
                     >
                         <Input placeholder="Alt kateqoriya adını daxil edin"/>

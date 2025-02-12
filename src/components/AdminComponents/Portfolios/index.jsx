@@ -50,7 +50,11 @@ function PortfoliosPanel() {
                 formData.append("cardImage", editingProduct.cardImage);
             }
 
+            console.log([...formData.entries()]);
+
+
             const response = await postUpdateProduct(formData).unwrap();
+            console.log(response)
             if (response?.statusCode === 201) {
                 alert("Portfolio uğurla yeniləndi.");
                 refetchProducts();

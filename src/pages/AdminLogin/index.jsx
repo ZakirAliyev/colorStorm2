@@ -35,7 +35,7 @@ function AdminLogin() {
                         timer: 1500,
                     });
                     resetForm()
-                    navigate('/cp/dashboard/products')
+                    navigate('/cp/dashboard/orders')
                     Cookies.set("colorStormToken", response?.data?.token)
                     Cookies.set("colorStormRole", "Admin")
                 }

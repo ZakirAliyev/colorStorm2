@@ -4,6 +4,7 @@ import Portfolio from "../pages/Portfolio/index.jsx";
 import ServiceDetails from "../pages/ServiceDetails/index.jsx";
 import AdminPanel from "../pages/AdminPanel/index.jsx";
 import AdminLogin from "../pages/AdminLogin/index.jsx";
+import PortfolioDetails from "../pages/PortfolioDetails/index.jsx";
 
 export const ROUTES = [
     {
@@ -21,6 +22,10 @@ export const ROUTES = [
             {
                 path: '/services/:id',
                 element: <ServiceDetails/>
+            },
+            {
+                path: '/portfolio/:id',
+                element: <PortfolioDetails/>
             },
             {
                 path: '/cp',

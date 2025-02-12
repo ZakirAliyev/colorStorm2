@@ -185,7 +185,6 @@ export const usersApi = createApi({
                 url: '/Portfolio/create-portfolio',
                 method: 'POST',
                 body: order,
-                headers: {'Content-Type': 'application/json'},
             }),
         }),
         updatePortfolio: builder.mutation({
@@ -193,7 +192,6 @@ export const usersApi = createApi({
                 url: '/Portfolio/update-portfolio',
                 method: 'PUT',
                 body: order,
-                headers: {'Content-Type': 'application/json'},
             }),
         }),
         deletePortfolio: builder.mutation({
@@ -201,6 +199,16 @@ export const usersApi = createApi({
                 url: `/Portfolio/delete-portfolio/${id}`,
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json'},
+            }),
+        }),
+        getProductById: builder.query({
+            query: (id) => ({
+                url: `/Product/get-product-by-id/${id}`,
+            }),
+        }),
+        getPortfolioById: builder.query({
+            query: (id) => ({
+                url: `/Portfolio/get-portfolio/${id}`,
             }),
         }),
     }),
@@ -234,4 +242,6 @@ export const {
     useCreatePortfolioMutation,
     useUpdatePortfolioMutation,
     useDeletePortfolioMutation,
+    useGetProductByIdQuery,
+    useGetPortfolioByIdQuery
 } = usersApi

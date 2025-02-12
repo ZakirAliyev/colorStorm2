@@ -34,6 +34,7 @@
     padding: 24px;
     cursor: pointer;
     transition: all .2s ease;
+    height: 100%;
 
     &:hover {
       transform: scale(1.03);
@@ -41,7 +42,7 @@
 
     img {
       border-radius: 20px;
-      aspect-ratio: 4/1;
+      aspect-ratio: 2/1;
       object-fit: cover;
       width: 100%;
       margin-bottom: 20px;
@@ -62,6 +63,7 @@
       line-height: 20px;
       color: #c5c5c5;
       font-weight: 400;
+      margin-top: 15px;
     }
   }
 
@@ -76,10 +78,6 @@
       border: 1px solid #A1AEBF;
       border-radius: 20px;
       padding: 24px;
-
-      img {
-        aspect-ratio: 2/1;
-      }
     }
   }
 }

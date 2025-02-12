@@ -1,6 +1,7 @@
 import './index.scss'
 import image1 from "/src/assets/logo.png"
 import {useGetAllBrandsQuery} from "../../apiServices/usersApi.jsx";
+import {BRAND_URL} from "../../constants.js";
 
 function LogoScroll() {
 
@@ -13,34 +14,34 @@ function LogoScroll() {
             <div className={"wrapper left"}>
                 {brands && brands.map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
                 {brands && brands.map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
                 {brands && brands.map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
             </div>
             <div className={"wrapper right"}>
                 {brands && brands.slice().reverse().map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
                 {brands && brands.slice().reverse().map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
                 {brands && brands.slice().reverse().map((brand) => (
                     <div className={"box"}>
-                        <img src={image1} alt={"Logo"}/>
+                        <img src={BRAND_URL + brand?.imageName} alt={"Logo"}/>
                     </div>
                 ))}
             </div>

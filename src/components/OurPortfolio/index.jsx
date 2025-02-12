@@ -1,7 +1,15 @@
 import './index.scss'
 import Work from "../Work/index.jsx";
+import {useGetAllPortfoliosQuery} from "../../apiServices/usersApi.jsx";
+import {useNavigate} from "react-router";
 
 function OurPortfolio() {
+
+    const {data: getAllPortfolios} = useGetAllPortfoliosQuery()
+    const portfolios = getAllPortfolios?.data
+
+    const navigate = useNavigate();
+
     return (
         <section id={"ourPortfolio"}>
             <div className={"container"}>
@@ -14,17 +22,29 @@ function OurPortfolio() {
                             sit. Lectus ac.</p>
                     </div>
                 </div>
-
                 <div className={"wrapper"}>
                     <div className={"left"}>
-                        <Work/>
-                        <Work/>
-                        <Work/>
+                        {portfolios &&
+                            portfolios.map((portfolio, index) =>
+                                index % 2 === 0 ? <div onClick={() => {
+                                    window.scrollTo(0, 0)
+                                    navigate(`/portfolio/${portfolio?.id}`)
+                                }}>
+                                    <Work key={portfolio?.id} portfolio={portfolio}/>
+                                </div> : null
+                            )
+                        }
                     </div>
                     <div className={"right"}>
-                        <Work/>
-                        <Work/>
-                        <Work/>
+                        {portfolios &&
+                            portfolios.map((portfolio, index) =>
+                                index % 2 === 1 ? <div onClick={() => {
+                                    console.log(portfolio?.id)
+                                }}>
+                                    <Work key={portfolio?.id} portfolio={portfolio}/>
+                                </div> : null
+                            )
+                        }
                     </div>
                 </div>
                 <div className={"button"}>

@@ -1,0 +1,43 @@
+#portfolioAbout {
+  padding: 100px 16px 50px;
+  color: white;
+  background: rgba(0, 0, 0) linear-gradient(45deg, rgba(125, 113, 187, 1) 0%, rgba(146, 149, 198, 0) 25%, rgba(168, 186, 209, 0) 50%, rgba(190, 225, 221, 0) 75%, rgba(238, 147, 100, 1) 100%);
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+  h2 {
+    font-family: Kanit, serif;
+    font-size: 65.57px;
+    line-height: 93.48px;
+    font-weight: 900;
+  }
+
+  p {
+    font-family: Kanit, serif;
+    font-weight: 275;
+    font-size: 18.31px;
+    line-height: 18.31px;
+    color: #c5c5c5;
+    margin-top: 10px;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 3/1;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-top: 40px;
+  }
+
+
+  @media screen and (max-width: 992px) {
+
+    h2 {
+      font-size: 26px;
+      line-height: 35px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}
