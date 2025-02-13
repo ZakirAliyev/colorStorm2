@@ -2,6 +2,7 @@ import './index.scss'
 import {useGetAllServicesQuery} from "../../apiServices/usersApi.jsx";
 import {SERVICE_CARD_URL} from "../../constants.js";
 import {useNavigate} from "react-router";
+import {useTranslation} from "react-i18next";
 
 function WeOffer() {
 
@@ -9,15 +10,14 @@ function WeOffer() {
     const services = getAllServices?.data
 
     const navigate = useNavigate();
+    const {t} = useTranslation();
 
     return (
         <section id={"weOffer"}>
             <div className={"container"}>
                 <div className={"textWrapper"}>
-                    <h2>We Offer</h2>
-                    <p>Risus commodo id odio turpis pharetra elementum. Pulvinar porta porta feugiat scelerisque in
-                        elit.
-                        Morbi rhoncus, tellus, eros consequat magna semper orci a tincidunt. </p>
+                    <h2>{t('We Offer')}</h2>
+                    <p>{t('Risus commodo id odio turpis pharetra elementum. Pulvinar porta porta feugiat scelerisque in elit. Morbi rhoncus, tellus, eros consequat magna semper orci a tincidunt.')}</p>
                 </div>
                 <div className={"row"}>
                     {services && services.map((service) => (

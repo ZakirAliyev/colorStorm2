@@ -1,31 +1,32 @@
-import './App.css'
+import './App.css';
 import {createBrowserRouter} from "react-router";
 import {ROUTES} from "./routes/ROUTES.jsx";
 import {RouterProvider} from "react-router-dom";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 import {HelmetProvider} from "react-helmet-async";
+import i18n from "i18next";
 
 function App() {
-
     const routes = createBrowserRouter(ROUTES);
 
-    const token = Cookies.get("colorStormToken");
+    const setDefaultCookie = (cookieName, defaultValue) => {
+        if (!Cookies.get(cookieName)) {
+            Cookies.set(cookieName, defaultValue, {expires: 365});
+        }
+    };
 
-    if (!token) {
-        Cookies.set("colorStormToken", "null");
-    }
+    setDefaultCookie("colorStormToken", "null");
+    setDefaultCookie("colorStormRole", "null");
 
-    const role = Cookies.get("colorStormRole");
-
-    if (!role) {
-        Cookies.set("colorStormRole", "null");
-    }
+    const lang = Cookies.get("colorStormLang") || "en";
+    i18n.changeLanguage(lang);
+    setDefaultCookie("colorStormLang", lang);
 
     return (
         <HelmetProvider>
             <RouterProvider router={routes}/>
         </HelmetProvider>
-    )
+    );
 }
 
-export default App
+export default App;

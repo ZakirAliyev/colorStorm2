@@ -12,6 +12,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: black;
+}
+
 table, th, td, tr, thead, tbody {
     text-align: center !important;
 }

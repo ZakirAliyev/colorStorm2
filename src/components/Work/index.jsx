@@ -2,9 +2,12 @@ import './index.scss'
 import {IoArrowForwardCircleOutline} from "react-icons/io5";
 import {useLocation, useNavigate} from "react-router";
 import {PORTFOLIO_URL} from "../../constants.js";
+import {useTranslation} from "react-i18next";
 
 function Work({portfolio}) {
 
+
+    const {t} = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
     const disableTransition = location.pathname.includes("portfolio/");
@@ -17,7 +20,7 @@ function Work({portfolio}) {
             <div className={"p"} onClick={() => {
                 window.scrollTo(0, 0)
                 navigate(`/portfolio/${portfolio?.id}`);
-            }}>Read more <IoArrowForwardCircleOutline/></div>
+            }}>{t('Read more')} <IoArrowForwardCircleOutline/></div>
         </section>
     );
 }

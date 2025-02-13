@@ -3,6 +3,8 @@ import {useState} from 'react';
 import {Modal, Input, Button, message,} from 'antd';
 import {PRODUCT_URL} from "../../constants.js";
 import {useCreateOrderMutation} from "../../apiServices/usersApi.jsx";
+import {useLocation} from "react-router";
+import Cookies from "js-cookie";
 
 function Card({product}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +15,9 @@ function Card({product}) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [createOrder, {isLoading}] = useCreateOrderMutation();
+
+    const location = useLocation();
+    const colorStormLang = Cookies.get('colorStormLang');
 
     const increaseQuantity = () => setQuantity(prev => prev + 1);
     const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
@@ -51,13 +56,18 @@ function Card({product}) {
     };
 
     return (
-        <div className="bx col-3 col-md-6 col-sm-6 col-xs-6">
+        <div
+            className={location.pathname === '/products' ? "bx col-4 col-md-6 col-sm-6 col-xs-6" : "bx col-3 col-md-6 col-sm-6 col-xs-6"}>
             <section id="product">
                 <img src={PRODUCT_URL + product?.images[0]} alt="Product"/>
                 <div className="wrapper">
                     <div className="textWrapper">
-                        <h6>{product?.categoryName}</h6>
-                        <h5>{product?.name}</h5>
+                        <h6>{colorStormLang === 'en' ? product?.categoryName :
+                            colorStormLang === 'az' ? product?.categoryNameAz :
+                                colorStormLang === 'ru' && product?.categoryNameRu}</h6>
+                        <h5>{colorStormLang === 'en' ? product?.name :
+                            colorStormLang === 'az' ? product?.nameAz :
+                                colorStormLang === 'ru' && product?.nameRu}</h5>
                     </div>
                     <button onClick={showProductModal}>MƏHSULU İNCƏLƏ</button>
                 </div>
