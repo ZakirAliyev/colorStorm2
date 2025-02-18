@@ -1,5 +1,5 @@
 import "./index.scss";
-import image1 from "/src/assets/logo.png";
+import image1 from "/src/assets/logoWhite.png";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {useGetAllServicesQuery} from "../../apiServices/usersApi.jsx";
@@ -55,10 +55,14 @@ function Footer() {
                     </div>
                     <div className="col-3 col-md-6 col-sm-6 col-xs-12">
                         <img src={image1} alt="Logo"/>
-                        <Link className={"p"} to="/">info@colorstorm.com.az</Link>
+                        <Link className={"p"} to="/"><a style={{
+                            color: '#c5c5c5'
+                        }}
+                            href={"mailto:info@colorstorm.com.az"}>info@colorstorm.com.az</a></Link>
                     </div>
                 </div>
-                <div className="finish">{t('Baku city, Sabail district, Academician Ahad Yagubov street, Bayil settlement')}</div>
+                <div
+                    className="finish">{t('Address')} : {t('Baku city, Sabail district, Academician Ahad Yagubov street, Bayil settlement')}</div>
                 <div className="finish">
                     {t("Created by")}: <span onClick={() => {
                     window.location.href = 'https://qavo.agency/'

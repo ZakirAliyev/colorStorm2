@@ -128,7 +128,11 @@ function Card({product}) {
                         >
                             {product.images && product.images.map((image) => (
                                 <SwiperSlide>
-                                    <img src={PRODUCT_URL + image} alt="Modal"/>
+                                    <img style={{
+                                        marginTop: '50px',
+                                        borderRadius: '25px',
+                                        overflow: 'hidden',
+                                    }} src={PRODUCT_URL + image} alt="Modal"/>
                                 </SwiperSlide>
                             ))}
                         </Swiper>

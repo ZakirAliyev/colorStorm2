@@ -1,6 +1,6 @@
 import './index.scss'
-import {useLocation} from "react-router";
-import image2 from "../../assets/bg.jpg";
+import {useLocation, useNavigate} from "react-router";
+import image2 from "../../assets/image.webp";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import {useState} from "react";
 import {CiLogout} from "react-icons/ci";
@@ -14,6 +14,7 @@ import Orders from "../../components/AdminComponents/Orders/index.jsx";
 import PortfoliosPanel from "../../components/AdminComponents/Portfolios/index.jsx";
 import {Helmet} from "react-helmet-async";
 import {useTranslation} from "react-i18next";
+import Cookies from "js-cookie";
 
 function AdminPanel() {
     const location = useLocation();
@@ -22,6 +23,8 @@ function AdminPanel() {
     const toggleDropdown = () => {
         setDropdownOpen(prev => !prev);
     };
+
+    const navigate = useNavigate();
 
     const {t} = useTranslation();
 
@@ -37,11 +40,15 @@ function AdminPanel() {
                         <button onClick={toggleDropdown}>
                             {dropdownOpen ? <FaChevronUp/> : <FaChevronDown/>}
                         </button>
-                        <span>Zakir Aliyev</span>
+                        <span>Admin</span>
                         <img src={image2} alt="Profile"/>
                         {dropdownOpen && (
                             <div className="dropdown-menu">
-                                <button>
+                                <button onClick={() => {
+                                    Cookies.set("colorStormToken", "null")
+                                    Cookies.set("colorStormRole", "null")
+                                    navigate('/')
+                                }}>
                                     <CiLogout style={{
                                         color: 'red'
                                     }}/>
