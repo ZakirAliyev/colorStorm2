@@ -2,26 +2,29 @@
   background-color: black;
   padding: 50px 16px 25px;
 
-  h2, p {
+  .h2h2h2, p {
     color: white;
+
   }
 
-  h2 {
+  .h2h2h2 {
     font-weight: 700;
     line-height: 20px;
     font-size: 16px;
+    padding-left: 0;
   }
 
-  p {
+  .p {
     font-weight: 500;
     line-height: 20px;
     color: #c5c5c5;
     margin-top: 20px;
+    display: block;
   }
 
   img {
     filter: brightness(0) invert(1);
-    width: 100px;
+    width: 200px;
     object-fit: cover;
   }
 
@@ -46,5 +49,12 @@
     font-size: 16px;
     line-height: 20px;
     margin-top: 50px;
+
+    span {
+      font-weight: 700;
+      color: #7A6EB6;
+      cursor: pointer;
+      margin-left: 10px;
+    }
   }
 }

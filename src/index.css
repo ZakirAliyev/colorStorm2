@@ -12,6 +12,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     background-color: black;
 }
@@ -25,162 +29,197 @@ a, button {
     outline: none;
 }
 
-.container{
+.container {
     max-width: 1240px;
     margin: 0 auto;
 }
-.row{
+
+.row {
     display: flex;
     flex-wrap: wrap;
 }
-.col-1{
+
+.col-1 {
     width: calc(100% / 12 * 1);
     padding: 16px;
 }
-.col-2{
+
+.col-2 {
     width: calc(100% / 12 * 2);
     padding: 16px;
 }
-.col-3{
+
+.col-3 {
     width: calc(100% / 12 * 3);
     padding: 16px;
 }
-.col-4{
+
+.col-4 {
     width: calc(100% / 12 * 4);
     padding: 16px;
 }
-.col-5{
+
+.col-5 {
     width: calc(100% / 12 * 5);
     padding: 16px;
 }
-.col-6{
+
+.col-6 {
     width: calc(100% / 12 * 6);
     padding: 16px;
 }
-.col-7{
+
+.col-7 {
     width: calc(100% / 12 * 7);
     padding: 16px;
 }
-.col-8{
+
+.col-8 {
     width: calc(100% / 12 * 8);
     padding: 16px;
 }
-.col-9{
+
+.col-9 {
     width: calc(100% / 12 * 9);
     padding: 16px;
 }
-.col-10{
+
+.col-10 {
     width: calc(100% / 12 * 10);
     padding: 16px;
 }
-.col-11{
+
+.col-11 {
     width: calc(100% / 12 * 11);
     padding: 16px;
 }
-.col-12{
+
+.col-12 {
     width: calc(100% / 12 * 12);
     padding: 16px;
 }
 
 /* for tablet */
-@media screen and (max-width: 992px) and (min-width:768px) {
-    .col-md-1{
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .col-md-1 {
         width: calc(100% / 12 * 1);
         padding: 16px;
     }
-    .col-md-2{
+
+    .col-md-2 {
         width: calc(100% / 12 * 2);
         padding: 16px;
     }
-    .col-md-3{
+
+    .col-md-3 {
         width: calc(100% / 12 * 3);
         padding: 16px;
     }
-    .col-md-4{
+
+    .col-md-4 {
         width: calc(100% / 12 * 4);
         padding: 16px;
     }
-    .col-md-5{
+
+    .col-md-5 {
         width: calc(100% / 12 * 5);
         padding: 16px;
     }
-    .col-md-6{
+
+    .col-md-6 {
         width: calc(100% / 12 * 6);
         padding: 16px;
     }
-    .col-md-7{
+
+    .col-md-7 {
         width: calc(100% / 12 * 7);
         padding: 16px;
     }
-    .col-md-8{
+
+    .col-md-8 {
         width: calc(100% / 12 * 8);
         padding: 16px;
     }
-    .col-md-9{
+
+    .col-md-9 {
         width: calc(100% / 12 * 9);
         padding: 16px;
     }
-    .col-md-10{
+
+    .col-md-10 {
         width: calc(100% / 12 * 10);
         padding: 16px;
     }
-    .col-md-11{
+
+    .col-md-11 {
         width: calc(100% / 12 * 11);
         padding: 16px;
     }
-    .col-md-12{
+
+    .col-md-12 {
         width: calc(100% / 12 * 12);
         padding: 16px;
     }
 }
 
 /* for large phone */
-@media screen and (max-width: 768px) and (min-width:576px) {
-    .col-sm-1{
+@media screen and (max-width: 768px) and (min-width: 576px) {
+    .col-sm-1 {
         width: calc(100% / 12 * 1);
         padding: 16px;
     }
-    .col-sm-2{
+
+    .col-sm-2 {
         width: calc(100% / 12 * 2);
         padding: 16px;
     }
-    .col-sm-3{
+
+    .col-sm-3 {
         width: calc(100% / 12 * 3);
         padding: 16px;
     }
-    .col-sm-4{
+
+    .col-sm-4 {
         width: calc(100% / 12 * 4);
         padding: 16px;
     }
-    .col-sm-5{
+
+    .col-sm-5 {
         width: calc(100% / 12 * 5);
         padding: 16px;
     }
-    .col-sm-6{
+
+    .col-sm-6 {
         width: calc(100% / 12 * 6);
         padding: 16px;
     }
-    .col-sm-7{
+
+    .col-sm-7 {
         width: calc(100% / 12 * 7);
         padding: 16px;
     }
-    .col-sm-8{
+
+    .col-sm-8 {
         width: calc(100% / 12 * 8);
         padding: 16px;
     }
-    .col-sm-9{
+
+    .col-sm-9 {
         width: calc(100% / 12 * 9);
         padding: 16px;
     }
-    .col-sm-10{
+
+    .col-sm-10 {
         width: calc(100% / 12 * 10);
         padding: 16px;
     }
-    .col-sm-11{
+
+    .col-sm-11 {
         width: calc(100% / 12 * 11);
         padding: 16px;
     }
-    .col-sm-12{
+
+    .col-sm-12 {
         width: calc(100% / 12 * 12);
         padding: 16px;
     }
@@ -188,51 +227,62 @@ a, button {
 
 /* for small phone */
 @media screen and (max-width: 576px) {
-    .col-xs-1{
+    .col-xs-1 {
         width: calc(100% / 12 * 1);
         padding: 16px;
     }
-    .col-xs-2{
+
+    .col-xs-2 {
         width: calc(100% / 12 * 2);
         padding: 16px;
     }
-    .col-xs-3{
+
+    .col-xs-3 {
         width: calc(100% / 12 * 3);
         padding: 16px;
     }
-    .col-xs-4{
+
+    .col-xs-4 {
         width: calc(100% / 12 * 4);
         padding: 16px;
     }
-    .col-xs-5{
+
+    .col-xs-5 {
         width: calc(100% / 12 * 5);
         padding: 16px;
     }
-    .col-xs-6{
+
+    .col-xs-6 {
         width: calc(100% / 12 * 6);
         padding: 16px;
     }
-    .col-xs-7{
+
+    .col-xs-7 {
         width: calc(100% / 12 * 7);
         padding: 16px;
     }
-    .col-xs-8{
+
+    .col-xs-8 {
         width: calc(100% / 12 * 8);
         padding: 16px;
     }
-    .col-xs-9{
+
+    .col-xs-9 {
         width: calc(100% / 12 * 9);
         padding: 16px;
     }
-    .col-xs-10{
+
+    .col-xs-10 {
         width: calc(100% / 12 * 10);
         padding: 16px;
     }
-    .col-xs-11{
+
+    .col-xs-11 {
         width: calc(100% / 12 * 11);
         padding: 16px;
     }
-    .col-xs-12{
+
+    .col-xs-12 {
         width: calc(100% / 12 * 12);
         padding: 16px;
     }
@@ -267,4 +317,248 @@ a, button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.asdasd {
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding: 8px 16px;
+
+    .asdasd123 {font-size: 30px;
+    }
+}
+
+.name1name1 {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.ant-modal-wrap {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal {
+    .ant-modal-content {
+        padding: 0;
+        border-radius: 25px;
+        background-color: #101010;
+    }
+
+    .ant-modal-close-x {
+        color: white;
+        border: 1px solid white;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+
+        .img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 25px 0 0 25px;
+            overflow: hidden;
+
+            img {
+                max-width: 400px;
+                width: 100%;
+                object-fit: cover;
+                aspect-ratio: 1/1.2;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+            border-radius: 25px;
+            overflow: hidden;
+            img {
+                max-width: 600px;
+                aspect-ratio: 1/1;
+                border-radius: 0;
+            }
+        }
+
+        .modal-text {
+            padding: 32px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+
+            h2 {
+                font-size: 20px;
+                font-weight: 400;
+                color: white;
+                margin-top: 20px;
+            }
+
+            h3 {
+                font-size: 40px;
+                font-weight: 500;
+                color: white;
+                line-height: 1;
+            }
+
+            p {
+                font-size: 14px;
+                color: #d5d5d5;
+                margin-top: 40px;
+            }
+
+            .modal-buttons {
+                display: flex;
+                gap: 10px;
+
+                .ant-btn-primary {
+                    background-color: #60B5AD;
+                    padding: 16px 32px;
+                    border: none;
+                    font-size: 17px;
+                }
+
+                .ant-btn-default {
+                    padding: 16px 32px;
+                    font-size: 17px;
+                    border-color: white;
+                    color: white;
+                    background-color: #101010;
+
+                    &:hover {
+                        background-color: white;
+                        color: #101010;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.order-modal {
+
+    .order-label {
+        color: white;
+    }
+
+    .ant-modal-content {
+        padding: 20px 40px;
+        border-radius: 25px;
+        background-color: #1b1b1b;
+
+        button {
+            color: #c3c3c3;
+            border-radius: 50%;
+            border: 1px solid #c3c3c3;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .order-input {
+            width: 100%;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            padding: 8px 16px;
+            border: 1px solid white;
+            color: white;
+            background-color: transparent;
+
+            &::placeholder {
+                color: white;
+            }
+        }
+
+        .quantity-selector {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-bottom: 16px;
+
+            label {
+                color: white;
+                font-size: 16px;
+            }
+
+            .quantity-controls {
+                display: flex;
+
+                button {
+                    padding: 0 12px;
+                    border-radius: 10px 0 0 10px;
+                    border: 1px solid white;
+                    color: white;
+                    background-color: transparent;
+                    cursor: pointer;
+                    width: 100%;
+                    font-size: 18px;
+
+                    &:hover {
+                        background-color: white;
+                        color: #252525;
+                    }
+                }
+
+                .btnbtn1 {
+                    border-radius: 0 10px 10px 0;
+                }
+
+
+                .quantity-input {
+                    text-align: center;
+                    border-radius: 0px;
+                    border: 1px solid white;
+                    width: 200%;
+                    background-color: white;
+                    color: black;
+                    font-size: 18px;
+                    padding: 0;
+
+                    &::placeholder {
+                        color: #d5d5d5;
+                    }
+                }
+            }
+        }
+
+        .order-textarea {
+            padding: 8px 16px;
+            width: 100%;
+            resize: none;
+            border-radius: 10px;
+            border: 1px solid white;
+            background-color: transparent;
+            color: white;
+
+            &::placeholder {
+                color: #d5d5d5;
+            }
+        }
+
+        .order-submit {
+            margin-top: 16px;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #60B5AD;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #4a928a;
+            }
+        }
+    }
 }

@@ -3,29 +3,49 @@ import Navbar from "../../components/Navbar/index.jsx";
 import Footer from "../../components/Footer/index.jsx";
 import {useGetAllProductsQuery, useGetAllCategoriesTreeQuery} from "../../apiServices/usersApi.jsx";
 import Card from "../../components/Card/index.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import Cookies from "js-cookie";
+import {Helmet} from "react-helmet-async";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 function ProductsPage() {
     const {data: getAllProducts} = useGetAllProductsQuery();
     const {data: getAllCategories} = useGetAllCategoriesTreeQuery();
     const products = getAllProducts?.data;
     const categories = getAllCategories?.data;
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            AOS.init({
+                duration: 1000, // Animasyon süresi
+                once: true, // Animasyon sadece bir kez çalışsın
+            });
+        }, 800); // 2 saniye gecikme
+
+        return () => clearTimeout(timer); // Bileşen unmount olduğunda timer'ı temizle
+    }, []);
 
     const [selectedMainCategory, setSelectedMainCategory] = useState(null);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const {t} = useTranslation()
+
+    const colorStormLang = Cookies.get("colorStormLang");
 
     return (
         <section id="productsPage">
+            <Helmet>
+                <title>{t('Products- ColorStorm')}</title>
+            </Helmet>
             <Navbar/>
             <div className="productsPage">
                 <div className="container">
                     <div className="row">
                         <div className="col-3 col-md-3 col-sm-12 col-xs-12">
-                            <h2>FILTERS</h2>
+                            <h2>{t('FILTERS')}</h2>
                             <div className="leftBar">
                                 <div className="box">
                                     <ul>
-                                        {/* ALL PRODUCTS option */}
                                         <li
                                             onClick={() => {
                                                 setSelectedMainCategory(null);
@@ -36,7 +56,7 @@ function ProductsPage() {
                                                 padding: '10px'
                                             }}
                                         >
-                                            ALL PRODUCTS
+                                            {t('ALL PRODUCTS')}
                                         </li>
                                         {categories && categories.map((category) => (
                                             <li key={category.id} className="category">
@@ -51,7 +71,9 @@ function ProductsPage() {
                                                     }
                                                     className={`main-category ${selectedMainCategory === category.id ? "active" : ""}`}
                                                 >
-                                                    {category.name}
+                                                    {colorStormLang === 'en' ? category.name :
+                                                        colorStormLang === 'az' ? category.nameAz :
+                                                            colorStormLang === 'ru' && category.nameRu}
                                                 </div>
                                                 <ul
                                                     className="sub-category-list"
@@ -71,7 +93,9 @@ function ProductsPage() {
                                                             }}
                                                             className={`sub-category ${selectedSubCategory === sub.id ? "selected" : ""}`}
                                                         >
-                                                            {sub.name}
+                                                            {colorStormLang === 'en' ? sub.name :
+                                                                colorStormLang === 'az' ? sub.nameAz :
+                                                                    colorStormLang === 'ru' && sub.nameRu}
                                                         </li>
                                                     ))}
                                                 </ul>

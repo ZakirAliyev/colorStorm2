@@ -1,8 +1,20 @@
 import './index.scss'
 import {useTranslation} from "react-i18next";
-import Cookies from "js-cookie";
+import 'aos/dist/aos.css';
+import {useEffect} from "react";
 
 function Banner() {
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            AOS.init({
+                duration: 100, // Animasyon süresi
+                once: true, // Animasyon sadece bir kez çalışsın
+            });
+        }, 0); // 2 saniye gecikme
+
+        return () => clearTimeout(timer); // Bileşen unmount olduğunda timer'ı temizle
+    }, []);
 
     const {t} = useTranslation();
 

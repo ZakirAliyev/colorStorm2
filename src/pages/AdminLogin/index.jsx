@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
 import {Helmet} from "react-helmet-async";
 import {usePostAdminLoginMutation} from "../../apiServices/usersApi.jsx";
+import {useTranslation} from "react-i18next";
 
 function AdminLogin() {
 
@@ -15,6 +16,8 @@ function AdminLogin() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const {t} = useTranslation();
 
     const formik = useFormik({
         initialValues: {
@@ -55,7 +58,7 @@ function AdminLogin() {
     return (
         <section id={"adminForm"}>
             <Helmet>
-                <title>Admin - Giriş</title>
+                <title>{t('Admin Login - ColorStorm')}</title>
             </Helmet>
             <div className={"container"}>
                 <div className={"row"}>

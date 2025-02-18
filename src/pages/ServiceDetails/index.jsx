@@ -9,6 +9,8 @@ import ShortInfo from "../../components/ShortInfo/index.jsx";
 import {useParams} from "react-router";
 import {useGetServiceByIdQuery} from "../../apiServices/usersApi.jsx";
 import ServiceImages from "../../components/ServiceImages/index.jsx";
+import {Helmet} from "react-helmet-async";
+import {useTranslation} from "react-i18next";
 
 function ServiceDetails() {
 
@@ -17,8 +19,13 @@ function ServiceDetails() {
     const {data: getServiceById} = useGetServiceByIdQuery(params.id)
     const service = getServiceById?.data;
 
+    const {t} = useTranslation();
+
     return (
         <section id={"serviceDetails"}>
+            <Helmet>
+                <title>{t('Service details - ColorStorm')}</title>
+            </Helmet>
             <Navbar/>
             <ServiceBanner service={service}/>
             <ServiceAbout service={service}/>

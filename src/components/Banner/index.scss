@@ -1,7 +1,8 @@
 #banner {
+  padding-left: 16px;
   height: 80vh;
   width: 100%;
-  background-image: url("/src/assets/bg.jpg");
+  background-image: url("/src/assets/service.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -14,8 +15,8 @@
   }
 
   h1 {
-    font-size: 96px;
-    line-height: 80px;
+    font-size: 85px;
+    line-height: 105px;
     width: max-content;
     color: white;
   }
@@ -36,7 +37,7 @@
 
     padding: 32px;
     h1 {
-      font-size: 40px;
+      font-size: 30px;
       line-height: 1.2;
     }
     .gradient {

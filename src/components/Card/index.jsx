@@ -1,10 +1,16 @@
 import './index.scss';
-import {useState} from 'react';
-import {Modal, Input, Button, message,} from 'antd';
+import {Modal, Input, Button, message} from 'antd';
 import {PRODUCT_URL} from "../../constants.js";
 import {useCreateOrderMutation} from "../../apiServices/usersApi.jsx";
-import {useLocation} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 import Cookies from "js-cookie";
+import {useTranslation} from "react-i18next";
+import {Swiper, SwiperSlide} from "swiper/react";
+import React, {useEffect, useRef, useState} from 'react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import {Pagination} from 'swiper/modules';
+import 'aos/dist/aos.css';
 
 function Card({product}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,12 +18,15 @@ function Card({product}) {
     const [quantity, setQuantity] = useState(1);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
+    const [description, setDescription] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [companyName, setCompanyName] = useState('');
+    const [language, setLanguage] = useState('');
     const [createOrder, {isLoading}] = useCreateOrderMutation();
 
     const location = useLocation();
     const colorStormLang = Cookies.get('colorStormLang');
+    const {t} = useTranslation();
 
     const increaseQuantity = () => setQuantity(prev => prev + 1);
     const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
@@ -38,6 +47,18 @@ function Card({product}) {
         setIsOrderModalOpen(false);
     };
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            AOS.init({
+                duration: 1000, // Animasyon süresi
+                once: true, // Animasyon sadece bir kez çalışsın
+            });
+        }, 800); // 2 saniye gecikme
+
+        return () => clearTimeout(timer); // Bileşen unmount olduğunda timer'ı temizle
+    }, []);
+
+
     const handleOrderSubmit = async () => {
         try {
             const payload = {
@@ -46,7 +67,11 @@ function Card({product}) {
                 email,
                 phoneNumber,
                 companyName,
+                quantity,
+                description,
+                language: Cookies.get('colorStormLang')
             };
+
             await createOrder(payload).unwrap();
             message.success('Sifariş uğurla göndərildi!');
             handleOrderCancel();
@@ -55,25 +80,35 @@ function Card({product}) {
         }
     };
 
+    // Yardımcı fonksiyon: Metni 15 karakterden uzunsa kısaltır ve sonuna ... ekler
+    const truncateText = (text) => {
+        return text.length > 15 ? `${text.substring(0, 15)}...` : text;
+    };
+
+    const navigate = useNavigate();
+
     return (
-        <div
+        <div data-aos="fade-right"
             className={location.pathname === '/products' ? "bx col-4 col-md-6 col-sm-6 col-xs-6" : "bx col-3 col-md-6 col-sm-6 col-xs-6"}>
             <section id="product">
                 <img src={PRODUCT_URL + product?.images[0]} alt="Product"/>
                 <div className="wrapper">
                     <div className="textWrapper">
-                        <h6>{colorStormLang === 'en' ? product?.categoryName :
-                            colorStormLang === 'az' ? product?.categoryNameAz :
-                                colorStormLang === 'ru' && product?.categoryNameRu}</h6>
-                        <h5>{colorStormLang === 'en' ? product?.name :
-                            colorStormLang === 'az' ? product?.nameAz :
-                                colorStormLang === 'ru' && product?.nameRu}</h5>
+                        <h6>
+                            {colorStormLang === 'en' ? truncateText(product?.categoryName) :
+                                colorStormLang === 'az' ? truncateText(product?.categoryNameAz) :
+                                    colorStormLang === 'ru' && truncateText(product?.categoryNameRu)}
+                        </h6>
+                        <h5>
+                            {colorStormLang === 'en' ? truncateText(product?.name) :
+                                colorStormLang === 'az' ? truncateText(product?.nameAz) :
+                                    colorStormLang === 'ru' && truncateText(product?.nameRu)}
+                        </h5>
                     </div>
-                    <button onClick={showProductModal}>MƏHSULU İNCƏLƏ</button>
+                    <button onClick={showProductModal}>{t('PRODUCT REVIEW')}</button>
                 </div>
             </section>
 
-            {/* Product Details Modal */}
             <Modal
                 open={isModalOpen}
                 onCancel={handleProductCancel}
@@ -83,19 +118,47 @@ function Card({product}) {
                 width={1000}
             >
                 <div className="modal-content">
-                    <img src={PRODUCT_URL + product?.images[0]} alt="Modal"/>
+                    <div className={"img"}>
+                        <Swiper
+                            pagination={{
+                                dynamicBullets: true,
+                            }}
+                            modules={[Pagination]}
+                            className="mySwiper"
+                        >
+                            {product.images && product.images.map((image) => (
+                                <SwiperSlide>
+                                    <img src={PRODUCT_URL + image} alt="Modal"/>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </div>
                     <div className="modal-text">
                         <div>
-                            <h2>{product?.categoryName}</h2>
-                            <h3>{product?.name}</h3>
-                            <p>{product?.description}</p>
+                            <h2>
+                                {colorStormLang === 'en' ? product?.categoryName :
+                                    colorStormLang === 'az' ? product?.categoryNameAz :
+                                        colorStormLang === 'ru' && product?.categoryNameRu}
+                            </h2>
+                            <h3>
+                                {colorStormLang === 'en' ? product?.name :
+                                    colorStormLang === 'az' ? product?.nameAz :
+                                        colorStormLang === 'ru' && product?.nameRu}
+                            </h3>
+                            <p>
+                                {colorStormLang === 'en' ? product?.description :
+                                    colorStormLang === 'az' ? product?.descriptionAz :
+                                        colorStormLang === 'ru' && product?.descriptionRu}</p>
                         </div>
                         <div className="modal-buttons">
                             <Button type="primary" onClick={showOrderModal}>
-                                SİFARİŞ ET
+                                {t('ORDER')}
                             </Button>
-                            <Button type="default">
-                                ƏLAQƏYƏ KEÇ
+                            <Button type="default" onClick={() => {
+                                window.scrollTo(0, 0);
+                                navigate('/contact');
+                            }}>
+                                {t('CONTACT US')}
                             </Button>
                         </div>
                     </div>
@@ -117,7 +180,7 @@ function Card({product}) {
                         padding: '0px 10px 5px 10px',
                         fontWeight: '200',
                         fontSize: '14px',
-                    }}>Şirkət Adı
+                    }}>{t('Company name')}
                     </div>
                     <Input
                         value={companyName}
@@ -129,7 +192,7 @@ function Card({product}) {
                         padding: '0px 10px 5px 10px',
                         fontWeight: '200',
                         fontSize: '14px',
-                    }}>Ad, Soyad
+                    }}>{t('Firstname, Lastname')}
                     </div>
                     <Input
                         value={fullName}
@@ -141,7 +204,7 @@ function Card({product}) {
                         padding: '0px 10px 5px 10px',
                         fontWeight: '200',
                         fontSize: '14px',
-                    }}>Email
+                    }}>{t('Email')}
                     </div>
                     <Input
                         value={email}
@@ -153,7 +216,7 @@ function Card({product}) {
                         padding: '0px 10px 5px 10px',
                         fontWeight: '200',
                         fontSize: '14px',
-                    }}>Telefon nömrəsi
+                    }}>{t('Phone number')}
                     </div>
                     <Input
                         prefix="+994"
@@ -167,7 +230,7 @@ function Card({product}) {
                             padding: '0px 10px 5px 10px',
                             fontWeight: '200',
                             fontSize: '14px',
-                        }}>Məhsul sayı:</label>
+                        }}>{t('Product count')}:</label>
                         <div className="quantity-controls">
                             <Button onClick={decreaseQuantity}>-</Button>
                             <Input value={quantity} readOnly className="quantity-input"/>
@@ -176,9 +239,13 @@ function Card({product}) {
                     </div>
                     <Input.TextArea
                         rows={4}
-                        placeholder={"Əlavə qeyd"}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder={
+                            colorStormLang === 'en' ? 'Additional note' :
+                                colorStormLang === 'az' ? 'Əlavə qeyd' :
+                                    colorStormLang === 'ru' ? 'Дополнительная заметка' : ''
+                        }
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         className="order-input"
                     />
                     <div style={{
@@ -198,7 +265,7 @@ function Card({product}) {
                                 width: '100%',
                             }}
                         >
-                            SİFARİŞ ET
+                            {t('ORDER NOW')}
                         </Button>
                     </div>
                 </div>

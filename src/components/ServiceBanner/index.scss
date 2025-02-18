@@ -36,7 +36,6 @@
     color: #c5c5c5;
   }
 
-
   button {
     font-weight: 700;
     font-size: 14px;
@@ -54,6 +53,106 @@
       background-color: black;
       color: #FFA800;
       border: 1px solid black;
+    }
+  }
+
+  .custom-modal1 {
+    .ant-modal-content {
+      padding: 0;
+      border-radius: 25px;
+      background-color: #101010;
+    }
+
+    .ant-modal-close-x {
+      color: white;
+      border: 1px solid white;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+    }
+
+    .modal-content1 {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      .img {
+        max-width: 400px;
+        width: 100%;
+        border-radius: 25px 0 0 25px;
+        overflow: hidden;
+
+        img {
+          max-width: 400px;
+          width: 100%;
+          object-fit: cover;
+          aspect-ratio: 1/1.2;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+        border-radius: 25px;
+        overflow: hidden;
+        img {
+          max-width: 600px;
+          aspect-ratio: 1/1;
+          border-radius: 0;
+        }
+      }
+
+      .modal-text1 {
+        padding: 32px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+
+        h2 {
+          font-size: 20px;
+          font-weight: 400;
+          color: white;
+          margin-top: 20px;
+        }
+
+        h3 {
+          font-size: 40px;
+          font-weight: 500;
+          color: white;
+          line-height: 1;
+        }
+
+        p {
+          font-size: 14px;
+          color: #d5d5d5;
+          margin-top: 40px;
+        }
+
+        .modal-buttons1 {
+          display: flex;
+          gap: 10px;
+
+          .ant-btn-primary {
+            background-color: #60B5AD;
+            padding: 16px 32px;
+            border: none;
+            font-size: 17px;
+          }
+
+          .ant-btn-default {
+            padding: 16px 32px;
+            font-size: 17px;
+            border-color: white;
+            color: white;
+            background-color: #101010;
+
+            &:hover {
+              background-color: white;
+              color: #101010;
+            }
+          }
+        }
+      }
     }
   }
 

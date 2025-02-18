@@ -18,7 +18,11 @@ function OurPortfolio() {
                 <div className={"box"}>
                     <div className={"textWrapper"}>
                         <h2>{t('Our')} <h2 className={"gradient"}>{t('portfolio')}</h2></h2>
-                        <p>{t('Vulputate molestie molestie amet leo blandit accumsan. Sapien sed amet tellus purus sit odio eget. Diam morbi faucibus vitae neque id in. Nullam sed et dapibus nunc, porta enim orci urna, sit. Lectus ac.')}</p>
+                        <p>{t('We bring the image back to life! We give your devices a second life by applying high precision and technological innovations in the field of monitor repair.\n' +
+                            'We combine light and art! We provide aesthetic and functional lighting solutions to your spaces with the installation and sale of LED lighting systems.\n' +
+                            'We add splendor to the stages! With our creative approach to stage design and construction, we turn every event into an unforgettable show.\n' +
+                            'Every project is art for us! Our company creates special stage and lighting concepts according to the requirements of our customers.\n' +
+                            'Our professional team is here for you! We provide the highest level of service with our experienced engineers and designers.')}</p>
                     </div>
                 </div>
                 <div className={"wrapper"}>
@@ -47,7 +51,10 @@ function OurPortfolio() {
                     </div>
                 </div>
                 <div className={"button"}>
-                    <button>{t('Let’s connect')}</button>
+                    <button onClick={() => {
+                        window.scrollTo(0, 0)
+                        navigate('/contact')
+                    }}>{t('Let’s connect')}</button>
                 </div>
             </div>
         </section>

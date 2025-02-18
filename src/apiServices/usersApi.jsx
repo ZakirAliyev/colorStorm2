@@ -211,6 +211,20 @@ export const usersApi = createApi({
                 url: `/Portfolio/get-portfolio/${id}`,
             }),
         }),
+        postContactSend: builder.mutation({
+            query: (order) => ({
+                url: '/Contact/send',
+                method: 'POST',
+                body: order,
+            }),
+        }),
+        postWorkOrder: builder.mutation({
+            query: (order) => ({
+                url: '/WorkOrder/create-service-order',
+                method: 'POST',
+                body: order,
+            }),
+        }),
     }),
 })
 export const {
@@ -243,5 +257,7 @@ export const {
     useUpdatePortfolioMutation,
     useDeletePortfolioMutation,
     useGetProductByIdQuery,
-    useGetPortfolioByIdQuery
+    useGetPortfolioByIdQuery,
+    usePostContactSendMutation,
+    usePostWorkOrderMutation
 } = usersApi

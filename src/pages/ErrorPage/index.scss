@@ -1,0 +1,81 @@
+#errorPage {
+  color: white;
+  padding: 100px 16px 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -60px;
+
+  .h2 {
+    font-size: 90px;
+    color: #7A6EB6;
+    transition: all .4s ease;
+
+    cursor: pointer;
+
+    &:hover {
+      font-size: 110px;
+    }
+  }
+
+  button {
+    background-color: #7A6EB6;
+    border: none;
+    padding: 8px 32px;
+    margin-top: 20px;
+    border-radius: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all .4s ease;
+    width: max-content;
+    font-size: 16px;
+
+    &:hover {
+      background-color: white;
+      color: #7A6EB6;
+    }
+
+
+    .icon {
+      font-size: 18px;
+    }
+  }
+
+  .errorPage {
+    padding: 243px 0;
+
+    .center-xy {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+
+    .container {
+      width: 100%;
+    }
+
+    .copy-container {
+      text-align: center;
+
+      .asdpp {
+        color: #fff;
+        font-size: 24px;
+        letter-spacing: 0.2px;
+        margin: 0;
+      }
+
+      .handle {
+        width: 14px;
+        height: 30px;
+        top: 0;
+        left: 0;
+        margin-top: 1px;
+        position: absolute;
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ import MoreProjects from "../../components/MoreProjects/index.jsx";
 import Footer from "../../components/Footer/index.jsx";
 import PortfolioImages from "../../components/PorfolioImages/index.jsx";
 import {useTranslation} from "react-i18next";
+import {Helmet} from "react-helmet-async";
 
 function PortfolioDetails() {
 
@@ -19,6 +20,9 @@ function PortfolioDetails() {
 
     return (
         <section id={"portfolioDetails"}>
+            <Helmet>
+                <title>{t('Portfolio details - ColorStorm')}</title>
+            </Helmet>
             <Navbar/>
             <PortfolioAbout service={service}/>
             <PortfolioImages service={service}/>

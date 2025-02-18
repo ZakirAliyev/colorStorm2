@@ -12,6 +12,8 @@ import Categories from "../../components/AdminComponents/Categories/index.jsx";
 import Banners from "../../components/AdminComponents/Banners/index.jsx";
 import Orders from "../../components/AdminComponents/Orders/index.jsx";
 import PortfoliosPanel from "../../components/AdminComponents/Portfolios/index.jsx";
+import {Helmet} from "react-helmet-async";
+import {useTranslation} from "react-i18next";
 
 function AdminPanel() {
     const location = useLocation();
@@ -21,8 +23,13 @@ function AdminPanel() {
         setDropdownOpen(prev => !prev);
     };
 
+    const {t} = useTranslation();
+
     return (
         <section id="adminPanel">
+            <Helmet>
+                <title>{t('Admin Panel - ColorStorm')}</title>
+            </Helmet>
             <AdminLeftBar/>
             <div className="wrapper">
                 <div className="topClass">

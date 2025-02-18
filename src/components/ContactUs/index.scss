@@ -1,0 +1,80 @@
+#contactUs {
+  input, textarea {
+    color: white;
+    width: 100%;
+    background-color: #2a2a2a;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 0 16px;
+    margin-top: -10px;
+
+    &::placeholder {
+      color: #B7B7B7;
+    }
+  }
+
+  input {
+    height: 40px;
+  }
+
+  textarea {
+    padding: 16px;
+    resize: vertical;
+  }
+
+  .asdasdasdasd {
+    width: 100%;
+    background-color: #2a2a2a;
+    padding: 32px 0;
+    border-radius: 30px;
+    margin: 50px auto;
+
+    h2 {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+      font-weight: 800;
+      font-size: 32.76px;
+      line-height: 40.95px;
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 20px;
+      max-height: 450px;
+    }
+
+    .button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      button {
+        width: 300px;
+        border-radius: 15px;
+        background-color: #2a2a2a;
+        border: 1px solid #FFA800;
+        color: #FFA800;
+        font-weight: 500;
+        line-height: 15.29px;
+        padding: 8px;
+        transition: all .4s ease;
+
+        &:hover {
+          background-color: #FFA800;
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .asdasdasdasd {
+      h2 {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
