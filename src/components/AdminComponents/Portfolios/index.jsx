@@ -10,6 +10,7 @@ import {
     useUpdatePortfolioMutation
 } from "../../../apiServices/usersApi.jsx";
 import {PORTFOLIO_CARD_URL, PORTFOLIO_URL} from "../../../constants.js";
+import {Info} from "@mui/icons-material";
 
 function PortfoliosPanel() {
 
@@ -50,11 +51,7 @@ function PortfoliosPanel() {
                 formData.append("cardImage", editingProduct.cardImage);
             }
 
-            console.log([...formData.entries()]);
-
-
             const response = await postUpdateProduct(formData).unwrap();
-            console.log(response)
             if (response?.statusCode === 201) {
                 alert("Portfolio uğurla yeniləndi.");
                 refetchProducts();
@@ -128,6 +125,7 @@ function PortfoliosPanel() {
                     })
                     .filter(Boolean)
             );
+
         },
         beforeUpload: (file) => {
             const isImageOrVideo = file.type.startsWith("image/") || file.type.startsWith("video/");
@@ -147,15 +145,14 @@ function PortfoliosPanel() {
 
                 setSilinenSekiller((prevSilinenSekiller) => {
                     const yeniSilinenler = [...prevSilinenSekiller, trimmedUrl];
-                    console.log(yeniSilinenler); // Düzgün massiv göstəriləcək
                     return yeniSilinenler;
                 });
             }
         },
-        multiple: true,
-        accept: "image/*,video/*", // Sadece resim ve video kabul edilir
+        accept: "image/*,video/*",
     };
 
+    console.log(fileList)
 
     const uploadProps1 = {
         listType: "picture-card",
@@ -469,12 +466,10 @@ function PortfoliosPanel() {
                         rules={[{required: true, message: "Ən az bir şəkil əlavə edin!"}]}
                     >
                         <Upload {...uploadProps}>
-                            {fileList.length < 5 && (
-                                <div>
-                                    <PlusOutlined/>
-                                    <div style={{marginTop: 8}}>Şəkil əlavə et</div>
-                                </div>
-                            )}
+                            <div>
+                                <PlusOutlined/>
+                                <div style={{marginTop: 8}}>Şəkil əlavə et</div>
+                            </div>
                         </Upload>
                     </Form.Item>
 
@@ -492,6 +487,27 @@ function PortfoliosPanel() {
                             )}
                         </Upload>
                     </Form.Item>
+
+                    <div style={{
+                        color: 'red',
+                        display: 'flex',
+                        gap: '10px',
+                        alignItems: 'center',
+                        marginTop: '10px',
+                    }}><Info style={{
+                        fontSize: '14px'
+                    }}/>Hər şeyi yüklədikdən sonra düyməni yalnız bir dəfə sıxın və gözləyin.
+                    </div>
+                    <div style={{
+                        color: 'red',
+                        display: 'flex',
+                        gap: '10px',
+                        marginBottom: '30px',
+                        alignItems: 'center'
+                    }}><Info style={{
+                        fontSize: '14px'
+                    }}/>Ard-arda bir neçə dəfə düyməni klikləməyin!
+                    </div>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" style={{backgroundColor: '#0DA5B5'}}>

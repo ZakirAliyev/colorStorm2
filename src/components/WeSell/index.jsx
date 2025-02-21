@@ -27,7 +27,7 @@ function WeSell() {
         <section id={"weSell"}>
             <div className={"container"}>
                 <h2 data-aos="fade-left">{t('We sell')}</h2>
-                <p data-aos="fade-left">{t('Something about our products')}</p>
+                <p data-aos="fade-left">{t('Trust us, experience quality!')}</p>
                 <div className={"row"}>
                     {products && products.slice(0, 4).map((product) => (
                         <Card product={product} key={product?.id}/>

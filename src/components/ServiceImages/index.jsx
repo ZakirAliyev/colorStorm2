@@ -1,21 +1,23 @@
-import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import './index.scss';
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "./index.scss";
 import {SERVICE_URL} from "../../constants.js";
 import {useEffect} from "react";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
+import AOS from "aos";
+import VideoPlayer from "../VideoPlayer/index.jsx";
 
 export default function ServiceImages({service}) {
     useEffect(() => {
         const timer = setTimeout(() => {
             AOS.init({
-                duration: 1000, // Animasyon süresi
-                once: true, // Animasyon sadece bir kez çalışsın
+                duration: 1000,
+                once: true,
             });
-        }, 800); // 2 saniye gecikme
+        }, 800);
 
-        return () => clearTimeout(timer); // Bileşen unmount olduğunda timer'ı temizle
+        return () => clearTimeout(timer);
     }, []);
 
     return (
@@ -30,11 +32,21 @@ export default function ServiceImages({service}) {
                     1024: {slidesPerView: 4},
                 }}
             >
-                {service?.serviceImages && service?.serviceImages.slice(0, 10).map((image, index) => (
-                    <SwiperSlide key={index}>
-                        <img src={SERVICE_URL + image} alt={`Service Image ${index + 1}`}/>
-                    </SwiperSlide>
-                ))}
+                {service?.serviceImages &&
+                    service.serviceImages.slice(0, 10).map((media, index) => {
+                        const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|m4v|3gp|3g2)$/i;
+                        const isVideo = videoExtensions.test(media);
+
+                        return (
+                            <SwiperSlide key={index}>
+                                {isVideo ? (
+                                    <VideoPlayer src={SERVICE_URL + media}/>
+                                ) : (
+                                    <img src={SERVICE_URL + media} alt={`Service Media ${index + 1}`}/>
+                                )}
+                            </SwiperSlide>
+                        );
+                    })}
             </Swiper>
         </section>
     );

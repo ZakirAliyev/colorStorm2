@@ -31,7 +31,6 @@ function ServiceBanner({service}) {
     };
 
     const handleOrderSubmit = async () => {
-        console.log("Form Data:", formData); // Debug için
         if (!formData.companyName || !formData.fullName || !formData.email || !formData.phoneNumber) {
             alert(t("Please fill all required fields!"));
             return;
@@ -50,7 +49,6 @@ function ServiceBanner({service}) {
 
         setIsLoading(true);
         setTimeout(() => {
-            console.log("Submitted Data:", JSON.stringify(formData, null, 2));
             alert(t('Order submitted!'));
             setIsLoading(false);
             handleCancel();

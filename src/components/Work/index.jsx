@@ -31,7 +31,7 @@ function Work({portfolio}) {
 
     return (
         <section id={"work"} className={disableTransition ? "no-hover no-transition" : ""}>
-            <img src={PORTFOLIO_URL + portfolio?.images[0]} alt={"Image"}/>
+            <img src={PORTFOLIO_URL + portfolio?.cardImage} alt={"Image"}/>
             <div className={"location"}>{portfolio?.location}</div>
             <h2>
                 {colorStormLang === 'en' ? portfolio.title :

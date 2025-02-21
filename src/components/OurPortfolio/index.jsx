@@ -41,9 +41,7 @@ function OurPortfolio() {
                     <div className={"right"}>
                         {portfolios &&
                             portfolios.map((portfolio, index) =>
-                                index % 2 === 1 ? <div onClick={() => {
-                                    console.log(portfolio?.id)
-                                }}>
+                                index % 2 === 1 ? <div>
                                     <Work key={portfolio?.id} portfolio={portfolio}/>
                                 </div> : null
                             )

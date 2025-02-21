@@ -58,7 +58,6 @@ function Banners() {
         try {
             const values = await form.validateFields();
             const formData = new FormData();
-            console.log(values)
             formData.append("title", values.title);
             formData.append("subTitle", values.subTitle);
             formData.append("link", values.link);

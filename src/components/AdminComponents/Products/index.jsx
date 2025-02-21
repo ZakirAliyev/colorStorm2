@@ -11,6 +11,7 @@ import {
     usePostCreateProductMutation, useUpdateProductMutation
 } from "../../../apiServices/usersApi.jsx";
 import {PRODUCT_URL} from "../../../constants.js";
+import {Info} from "@mui/icons-material";
 
 function ProductPanel() {
 
@@ -110,7 +111,6 @@ function ProductPanel() {
 
             fileList.forEach((file) => {
                 formData.append("images", file.originFileObj);
-                console.log(file?.url)
             });
 
             // Backend-ə göndərin
@@ -152,7 +152,6 @@ function ProductPanel() {
                 formData.append("images", file.originFileObj);
             });
 
-            console.log(values)
             const response = await postCreateProduct(formData).unwrap();
 
             if (response?.statusCode === 201) {
@@ -195,11 +194,9 @@ function ProductPanel() {
 
             setSilinenSekiller((prevSilinenSekiller) => {
                 const yeniSilinenler = [...prevSilinenSekiller, trimmedUrl];
-                console.log(yeniSilinenler); // Düzgün massiv göstəriləcək
                 return yeniSilinenler;
             });
         },
-        multiple: true,
     };
 
     const handleEditClick = () => {
@@ -560,14 +557,33 @@ function ProductPanel() {
                         rules={[{required: true, message: "Ən az bir şəkil əlavə edin!"}]}
                     >
                         <Upload {...uploadProps}>
-                            {fileList.length < 5 && (
-                                <div>
-                                    <PlusOutlined/>
-                                    <div style={{marginTop: 8}}>Şəkil əlavə et</div>
-                                </div>
-                            )}
+                            <div>
+                                <PlusOutlined/>
+                                <div style={{marginTop: 8}}>Şəkil əlavə et</div>
+                            </div>
                         </Upload>
                     </Form.Item>
+
+                    <div style={{
+                        color: 'red',
+                        display: 'flex',
+                        gap: '10px',
+                        alignItems: 'center',
+                        marginTop: '10px',
+                    }}><Info style={{
+                        fontSize: '14px'
+                    }}/>Hər şeyi yüklədikdən sonra düyməni yalnız bir dəfə sıxın və gözləyin.
+                    </div>
+                    <div style={{
+                        color: 'red',
+                        display: 'flex',
+                        gap: '10px',
+                        marginBottom: '30px',
+                        alignItems: 'center'
+                    }}><Info style={{
+                        fontSize: '14px'
+                    }}/>Ard-arda bir neçə dəfə düyməni klikləməyin!
+                    </div>
 
                     <Form.Item>
                         <Button type="primary" htmlType="submit" style={{backgroundColor: '#0DA5B5'}}>
