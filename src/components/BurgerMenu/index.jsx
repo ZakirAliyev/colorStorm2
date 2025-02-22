@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import {FaBars, FaChevronDown, FaChevronUp, FaFacebook, FaLinkedin, FaTwitter, FaYoutube} from 'react-icons/fa';
 import {RxCross2} from 'react-icons/rx';
 import {useNavigate} from 'react-router-dom';
-import image1 from '/src/assets/whiteLogo.png';
+import image1 from '/src/assets/logoWhite.png';
 import {useGetAllServicesQuery} from '../../apiServices/usersApi.jsx';
 import {FaInstagram} from "react-icons/fa6";
 import {useTranslation} from "react-i18next";

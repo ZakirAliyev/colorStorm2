@@ -39,7 +39,7 @@ function Footer() {
                     </div>
                     <div className="col-3 col-md-6 col-sm-6 col-xs-12">
                         <h2 className={"h2h2h2"}>{t("Services")}</h2>
-                        {services && services?.map((service) => (
+                        {services && services?.slice(0, 3).map((service) => (
                             <Link className={"p"} to="/">
                                 {colorStormLang === 'en' ? service?.name :
                                     colorStormLang === 'az' ? service?.nameAz :
@@ -54,11 +54,15 @@ function Footer() {
                         <Link className={"p"} to="/">Linkedin</Link>
                     </div>
                     <div className="col-3 col-md-6 col-sm-6 col-xs-12">
-                        <img src={image1} alt="Logo"/>
+                        <img style={{
+                            cursor: "pointer",
+                        }} onClick={() => {
+                            navigate("/")
+                        }} src={image1} alt="Logo"/>
                         <Link className={"p"} to="/"><a style={{
                             color: '#c5c5c5'
                         }}
-                            href={"mailto:info@colorstorm.com.az"}>info@colorstorm.com.az</a></Link>
+                                                        href={"mailto:info@colorstorm.com.az"}>info@colorstorm.com.az</a></Link>
                     </div>
                 </div>
                 <div
