@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://api.colorstorm.com.az/api/',
+        baseUrl: 'https://api.colorstormevents.az/api/',
         prepareHeaders: (headers) => {
             const token = Cookies.get('colorStormToken');
             if (token) {

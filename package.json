@@ -38,7 +38,7 @@
     "sass": "^1.84.0",
     "styled-components": "^6.1.15",
     "sweetalert2": "^11.16.0",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

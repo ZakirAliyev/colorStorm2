@@ -20,7 +20,7 @@ export default function PortfolioImages({service}) {
                 className="mySwiper"
             >
                 {service?.images &&
-                    service?.images.slice(0, 10).map((media, index) => {
+                    service?.images.map((media, index) => {
                         const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|m4v|3gp|3g2)$/i;
                         const isVideo = videoExtensions.test(media);
 

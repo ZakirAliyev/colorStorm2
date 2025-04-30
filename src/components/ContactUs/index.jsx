@@ -64,7 +64,6 @@ function ContactUs() {
     };
 
 
-
     return (
         <section id={"contactUs"}>
             <div className={"asdasdasdasd container"}>
@@ -131,10 +130,11 @@ function ContactUs() {
                         </div>
                         <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}>
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12151.553468224563!2d49.84801437002094!3d40.41132374304449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403063aa515792e5%3A0xda413cf31449a17a!2sAK%C4%B0AB%20MMC!5e0!3m2!1saz!2saz!4v1739192553010!5m2!1saz!2saz"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.2836714944156!2d49.830101899999995!3d40.3360528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307ff39342a5b9%3A0x6ed8046232d4dcf1!2sSirinovlar!5e0!3m2!1str!2saz!4v1746006998662!5m2!1str!2saz"
                                 style={{
                                     border: 0
-                                }} allowFullScreen="" loading="lazy"
+                                }}
+                                allowFullScreen="" loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>

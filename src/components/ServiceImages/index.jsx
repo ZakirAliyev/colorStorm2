@@ -1,14 +1,17 @@
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
 import "./index.scss";
-import {SERVICE_URL} from "../../constants.js";
-import {useEffect} from "react";
+import { SERVICE_URL } from "../../constants.js";
+import { useEffect, useRef, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import VideoPlayer from "../VideoPlayer/index.jsx";
+import { Image } from "antd";
+import {FaEye} from "react-icons/fa";
 
-export default function ServiceImages({service}) {
+export default function ServiceImages({ service }) {
+    const swiperRef = useRef(null);
+    const videoRefs = useRef({}); // Her video için referansları sakla
+
     useEffect(() => {
         const timer = setTimeout(() => {
             AOS.init({
@@ -20,33 +23,196 @@ export default function ServiceImages({service}) {
         return () => clearTimeout(timer);
     }, []);
 
+    // Video kontrol durumları
+    const [videoStates, setVideoStates] = useState({});
+
+    // Video oynatma/duraklatma
+    const togglePlay = (index) => {
+        const video = videoRefs.current[index];
+        if (video) {
+            if (video.paused) {
+                video.play();
+                setVideoStates((prev) => ({ ...prev, [index]: { ...prev[index], isPlaying: true } }));
+            } else {
+                video.pause();
+                setVideoStates((prev) => ({ ...prev, [index]: { ...prev[index], isPlaying: false } }));
+            }
+        }
+    };
+
+    // Tam ekran açma/kapama
+    const toggleFullscreen = (index) => {
+        const video = videoRefs.current[index];
+        const videoWrapper = video?.parentElement;
+        if (video && videoWrapper) {
+            if (!document.fullscreenElement) {
+                if (videoWrapper.requestFullscreen) {
+                    videoWrapper.requestFullscreen();
+                } else if (videoWrapper.mozRequestFullScreen) {
+                    videoWrapper.mozRequestFullScreen(); // Firefox
+                } else if (videoWrapper.webkitRequestFullscreen) {
+                    videoWrapper.webkitRequestFullscreen(); // Chrome, Safari
+                } else if (videoWrapper.msRequestFullscreen) {
+                    videoWrapper.msRequestFullscreen(); // IE/Edge
+                }
+                setVideoStates((prev) => ({
+                    ...prev,
+                    [index]: { ...prev[index], isFullscreen: true },
+                }));
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                setVideoStates((prev) => ({
+                    ...prev,
+                    [index]: { ...prev[index], isFullscreen: false },
+                }));
+            }
+        }
+    };
+
+    // Video ilerleme çubuğu
+    const handleProgress = (index) => {
+        const video = videoRefs.current[index];
+        if (video) {
+            const progress = (video.currentTime / video.duration) * 100;
+            setVideoStates((prev) => ({ ...prev, [index]: { ...prev[index], progress } }));
+        }
+    };
+
+    // Video süresini güncelle
+    const handleSeek = (index, e) => {
+        const video = videoRefs.current[index];
+        if (video) {
+            const progress = e.target.value;
+            video.currentTime = (progress / 100) * video.duration;
+            setVideoStates((prev) => ({ ...prev, [index]: { ...prev[index], progress } }));
+        }
+    };
+
+    // Video durumlarını başlat
+    const initializeVideoState = (index) => {
+        setVideoStates((prev) => ({
+            ...prev,
+            [index]: { isPlaying: false, isFullscreen: false, progress: 0 },
+        }));
+    };
+
+    // Define supported video extensions
+    const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|m4v|3gp|3g2)$/i;
+
     return (
         <section id="serviceImages" data-aos="fade-up">
             <Swiper
                 spaceBetween={30}
+                slidesPerView={1.2}
                 className="mySwiper"
+                freeMode={true}
+                freeModeSticky={true}
+                touchStartPreventDefault={false}
+                simulateTouch={true}
+                touchRatio={1.5}
+                grabCursor={true}
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                }}
                 breakpoints={{
-                    320: {slidesPerView: 1},
-                    480: {slidesPerView: 2},
-                    768: {slidesPerView: 3},
-                    1024: {slidesPerView: 4},
+                    320: { slidesPerView: 1.2 },
+                    480: { slidesPerView: 2.2 },
+                    768: { slidesPerView: 3.2 },
+                    1024: { slidesPerView: 4.2 },
                 }}
             >
-                {service?.serviceImages &&
-                    service.serviceImages.slice(0, 10).map((media, index) => {
-                        const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|m4v|3gp|3g2)$/i;
+                <Image.PreviewGroup>
+                    {service?.serviceImages?.map((media, index) => {
                         const isVideo = videoExtensions.test(media);
 
                         return (
                             <SwiperSlide key={index}>
                                 {isVideo ? (
-                                    <VideoPlayer src={SERVICE_URL + media}/>
+                                    <div className="video-wrapper">
+                                        <video
+                                            ref={(el) => {
+                                                videoRefs.current[index] = el;
+                                                if (el && !videoStates[index]) {
+                                                    initializeVideoState(index);
+                                                }
+                                            }}
+                                            playsInline
+                                            className="swiper-video"
+                                            style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                aspectRatio: "16/9",
+                                                objectFit: "contain",
+                                                borderRadius: "20px",
+                                            }}
+                                            title={`ColorStorm Events xidməti videosu ${index + 1}`}
+                                            onTimeUpdate={() => handleProgress(index)}
+                                        >
+                                            <source src={SERVICE_URL + media} type="video/mp4" />
+                                            Brauzeriniz video etiketini dəstəkləmir.
+                                        </video>
+                                        <div className="video-controls">
+                                            <button
+                                                className="play-pause-btn"
+                                                onClick={() => togglePlay(index)}
+                                                aria-label={
+                                                    videoStates[index]?.isPlaying
+                                                        ? "Videonu dayandır"
+                                                        : "Videonu oynat"
+                                                }
+                                            >
+                                                {videoStates[index]?.isPlaying ? "⏸" : "▶"}
+                                            </button>
+                                            <input
+                                                type="range"
+                                                className="progress-bar"
+                                                min="0"
+                                                max="100"
+                                                value={videoStates[index]?.progress || 0}
+                                                onChange={(e) => handleSeek(index, e)}
+                                                aria-label="Video irəliləmə çubuğu"
+                                            />
+                                            <button
+                                                className="fullscreen-btn"
+                                                onClick={() => toggleFullscreen(index)}
+                                                aria-label={
+                                                    videoStates[index]?.isFullscreen
+                                                        ? "Tam ekrandan çıx"
+                                                        : "Tam ekran et"
+                                                }
+                                            >
+                                                {videoStates[index]?.isFullscreen ? "⤡" : "⤢"}
+                                            </button>
+                                        </div>
+                                    </div>
                                 ) : (
-                                    <img src={SERVICE_URL + media} alt={`Service Media ${index + 1}`}/>
+                                    <Image
+                                        src={SERVICE_URL + media}
+                                        alt={`ColorStorm Events xidməti ${index + 1}`}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            aspectRatio: "16/9",
+                                            objectFit: "cover",
+                                            borderRadius: "20px",
+                                        }}
+                                        preview={{
+                                            mask: <FaEye/>,
+                                        }}
+                                    />
                                 )}
                             </SwiperSlide>
                         );
                     })}
+                </Image.PreviewGroup>
             </Swiper>
         </section>
     );

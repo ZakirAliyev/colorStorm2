@@ -36,7 +36,9 @@ function WeOffer() {
                     <h2 data-aos="fade-up">{t('We Offer')}</h2>
                     <p data-aos="fade-up">{t('We ensure your monitors perform at a higher level, bring your space to life with LED lights, and make your scenes unforgettable, because perfection is our standard!')}</p>
                 </div>
-                <div className={"row"}>
+                <div className={"row"} style={{
+                    justifyContent: "center"
+                }}>
                     {services && services.map((service, index) => (
                         <div className={"col-6 col-md-6 col-sm-12 col-xs-12"}
                              data-aos={index % 2 === 0 ? "fade-down-right" : "fade-up"}>
