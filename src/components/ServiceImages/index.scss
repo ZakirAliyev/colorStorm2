@@ -3,8 +3,8 @@
   background-color: black;
 
   .mySwiper {
-    touch-action: pan-x; /* Yatay kaydırmaya izin ver */
-    user-select: none; /* Sürükleme sırasında metin seçimini engelle */
+    touch-action: pan-x;
+    user-select: none;
   }
 
   .video-wrapper {
@@ -16,7 +16,7 @@
   .swiper-video {
     width: 100%;
     height: 100%;
-    pointer-events: auto; /* Video yüzeyine tıklama engellenmez */
+    pointer-events: auto;
   }
 
   .video-controls {
@@ -30,14 +30,14 @@
     border-radius: 10px;
     padding: 5px;
     z-index: 10;
-    pointer-events: none; /* Varsayılan olarak kontroller tıklanamaz */
-    opacity: 0; /* Varsayılan olarak gizli */
-    transition: opacity 0.3s ease; /* Yumuşak geçiş efekti */
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   .video-wrapper:hover .video-controls {
-    opacity: 1; /* Hover sırasında görünür */
-    pointer-events: auto; /* Hover sırasında kontroller tıklanabilir */
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .play-pause-btn,
@@ -52,7 +52,7 @@
   }
 
   .fullscreen-btn {
-    font-size: 20px; /* Önceki 30px yerine daha dengeli */
+    font-size: 20px;
     margin-right: 5px;
   }
 
@@ -110,5 +110,38 @@
     height: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
+  }
+
+  /* Styles for preview navigation buttons */
+  .ant-image-preview-operations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    .ant-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 0 15px;
+      cursor: pointer;
+
+      &:hover {
+        color: #1890ff;
+      }
+
+      &:disabled {
+        color: #555;
+        cursor: not-allowed;
+      }
+    }
   }
 }

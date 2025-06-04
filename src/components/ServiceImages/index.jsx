@@ -5,12 +5,12 @@ import { SERVICE_URL } from "../../constants.js";
 import { useEffect, useRef, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import { Image } from "antd";
-import {FaEye} from "react-icons/fa";
+import { Image, Button } from "antd"; // Import Button for navigation
+import { FaEye, FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Import arrow icons
 
 export default function ServiceImages({ service }) {
     const swiperRef = useRef(null);
-    const videoRefs = useRef({}); // Her video için referansları sakla
+    const videoRefs = useRef({});
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -23,10 +23,8 @@ export default function ServiceImages({ service }) {
         return () => clearTimeout(timer);
     }, []);
 
-    // Video kontrol durumları
     const [videoStates, setVideoStates] = useState({});
 
-    // Video oynatma/duraklatma
     const togglePlay = (index) => {
         const video = videoRefs.current[index];
         if (video) {
@@ -40,7 +38,6 @@ export default function ServiceImages({ service }) {
         }
     };
 
-    // Tam ekran açma/kapama
     const toggleFullscreen = (index) => {
         const video = videoRefs.current[index];
         const videoWrapper = video?.parentElement;
@@ -49,11 +46,11 @@ export default function ServiceImages({ service }) {
                 if (videoWrapper.requestFullscreen) {
                     videoWrapper.requestFullscreen();
                 } else if (videoWrapper.mozRequestFullScreen) {
-                    videoWrapper.mozRequestFullScreen(); // Firefox
+                    videoWrapper.mozRequestFullScreen();
                 } else if (videoWrapper.webkitRequestFullscreen) {
-                    videoWrapper.webkitRequestFullscreen(); // Chrome, Safari
+                    videoWrapper.webkitRequestFullscreen();
                 } else if (videoWrapper.msRequestFullscreen) {
-                    videoWrapper.msRequestFullscreen(); // IE/Edge
+                    videoWrapper.msRequestFullscreen();
                 }
                 setVideoStates((prev) => ({
                     ...prev,
@@ -77,7 +74,6 @@ export default function ServiceImages({ service }) {
         }
     };
 
-    // Video ilerleme çubuğu
     const handleProgress = (index) => {
         const video = videoRefs.current[index];
         if (video) {
@@ -86,7 +82,6 @@ export default function ServiceImages({ service }) {
         }
     };
 
-    // Video süresini güncelle
     const handleSeek = (index, e) => {
         const video = videoRefs.current[index];
         if (video) {
@@ -96,7 +91,6 @@ export default function ServiceImages({ service }) {
         }
     };
 
-    // Video durumlarını başlat
     const initializeVideoState = (index) => {
         setVideoStates((prev) => ({
             ...prev,
@@ -104,8 +98,32 @@ export default function ServiceImages({ service }) {
         }));
     };
 
-    // Define supported video extensions
     const videoExtensions = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|m4v|3gp|3g2)$/i;
+
+    // Custom navigation buttons for preview
+    const renderPreviewToolbar = ({ image, actions }) => {
+        const { onPrev, onNext } = actions; // Ant Design provides these actions
+        const isFirstImage = actions.current === 0; // Check if it's the first image
+        const isLastImage = actions.current === service?.serviceImages?.filter((media) => !videoExtensions.test(media)).length - 1; // Check if it's the last image
+
+        return (
+            <div className="ant-image-preview-operations">
+                <Button
+                    icon={<FaArrowLeft />}
+                    onClick={onPrev}
+                    disabled={isFirstImage} // Disable if first image
+                    style={{ marginRight: 10 }}
+                    aria-label="Previous image"
+                />
+                <Button
+                    icon={<FaArrowRight />}
+                    onClick={onNext}
+                    disabled={isLastImage} // Disable if last image
+                    aria-label="Next image"
+                />
+            </div>
+        );
+    };
 
     return (
         <section id="serviceImages" data-aos="fade-up">
@@ -126,10 +144,19 @@ export default function ServiceImages({ service }) {
                     320: { slidesPerView: 1.2 },
                     480: { slidesPerView: 2.2 },
                     768: { slidesPerView: 3.2 },
-                    1024: { slidesPerView: 4.2 },
+                    1024: { slidesPerView: 3.2 },
                 }}
             >
-                <Image.PreviewGroup>
+                <Image.PreviewGroup
+                    preview={{
+                        toolbarRender: renderPreviewToolbar, // Custom toolbar with navigation
+                        imageRender: (originalNode, info) => {
+                            // Ensure only images (not videos) are shown in preview
+                            const isVideo = videoExtensions.test(service?.serviceImages[info.current]);
+                            return isVideo ? null : originalNode;
+                        },
+                    }}
+                >
                     {service?.serviceImages?.map((media, index) => {
                         const isVideo = videoExtensions.test(media);
 
@@ -163,11 +190,7 @@ export default function ServiceImages({ service }) {
                                             <button
                                                 className="play-pause-btn"
                                                 onClick={() => togglePlay(index)}
-                                                aria-label={
-                                                    videoStates[index]?.isPlaying
-                                                        ? "Videonu dayandır"
-                                                        : "Videonu oynat"
-                                                }
+                                                aria-label={videoStates[index]?.isPlaying ? "Videonu dayandır" : "Videonu oynat"}
                                             >
                                                 {videoStates[index]?.isPlaying ? "⏸" : "▶"}
                                             </button>
@@ -184,9 +207,7 @@ export default function ServiceImages({ service }) {
                                                 className="fullscreen-btn"
                                                 onClick={() => toggleFullscreen(index)}
                                                 aria-label={
-                                                    videoStates[index]?.isFullscreen
-                                                        ? "Tam ekrandan çıx"
-                                                        : "Tam ekran et"
+                                                    videoStates[index]?.isFullscreen ? "Tam ekrandan çıx" : "Tam ekran et"
                                                 }
                                             >
                                                 {videoStates[index]?.isFullscreen ? "⤡" : "⤢"}
@@ -205,7 +226,7 @@ export default function ServiceImages({ service }) {
                                             borderRadius: "20px",
                                         }}
                                         preview={{
-                                            mask: <FaEye/>,
+                                            mask: <FaEye />,
                                         }}
                                     />
                                 )}
