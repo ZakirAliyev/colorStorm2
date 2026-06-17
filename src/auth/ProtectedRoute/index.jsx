@@ -6,6 +6,7 @@ const ProtectedRoute = ({children}) => {
     const role = Cookies.get("colorStormRole");
     const location = useLocation();
 
+    
 
     if (location.pathname.startsWith("/cp") && (role !== "Admin" || !token)) {
         return <Navigate to="/" replace state={{from: location}}/>;
