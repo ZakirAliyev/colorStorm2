@@ -69,8 +69,8 @@ function Footer() {
                     className="finish">{t('Address')} : {t('Baku city, Sabail district, Academician Ahad Yagubov street, Bayil settlement')}</div>
                 <div className="finish">
                     {t("Created by")}: <span onClick={() => {
-                    window.location.href = 'https://qavo.az/'
-                }}>qavo.az</span>
+                    window.location.href = 'https://texnocode.com/'
+                }}>texnocode.com</span>
                 </div>
             </div>
         </section>
